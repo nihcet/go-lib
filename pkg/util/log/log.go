@@ -12,10 +12,10 @@ import (
 var log *Logger
 
 type Logger struct {
-	Info   func(msg string)                     // plain message
-	Infof  func(pattern, msg string)            // message with pattern
-	Error  func(msg string, err error)          // plain message and error
-	Errorf func(pattern, msg string, err error) // message with pattern and error
+	Info   func(msg string)                            // plain message
+	Infof  func(pattern string, msg ...any)            // message with pattern
+	Error  func(err error, msg string)                 // plain message and error
+	Errorf func(err error, pattern string, msg ...any) // message with pattern and error
 }
 
 func GetLogger() Logger {
@@ -36,18 +36,18 @@ func InitializeLog(serviceName string) {
 				Info().
 				Msg(msg)
 		},
-		Infof: func(pattern, msg string) {
+		Infof: func(pattern string, msg ...any) {
 			zlog.
 				Info().
 				Msgf(pattern, msg)
 		},
-		Error: func(msg string, err error) {
+		Error: func(err error, msg string) {
 			zlog.
 				Error().
 				Err(err).
 				Msg(msg)
 		},
-		Errorf: func(pattern, msg string, err error) {
+		Errorf: func(err error, pattern string, msg ...any) {
 			zlog.
 				Error().
 				Err(err).
