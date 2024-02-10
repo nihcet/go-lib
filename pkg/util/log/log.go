@@ -39,7 +39,7 @@ func InitializeLog(serviceName string) {
 		Infof: func(pattern string, msg ...any) {
 			zlog.
 				Info().
-				Msgf(pattern, msg)
+				Msgf(pattern, msg...)
 		},
 		Error: func(err error, msg string) {
 			zlog.
@@ -51,7 +51,7 @@ func InitializeLog(serviceName string) {
 			zlog.
 				Error().
 				Err(err).
-				Msgf(pattern, msg)
+				Msgf(pattern, msg...)
 		},
 	}
 }
