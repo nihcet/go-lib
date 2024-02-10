@@ -13,10 +13,13 @@ type ServerConfig struct {
 	ServicePort string `env:"service_port"`
 }
 
-func LoadConfig(config any) {
+func LoadConfig[T any]() *T {
+	var config T
 	_, err := flags.Parse(&config)
-	fmt.Printf("config: %+v\n", config)
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Printf("config: %+v\n", config)
+	return &config
 }
