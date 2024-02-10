@@ -1,10 +1,10 @@
 package configutil
 
 import (
-	"fmt"
-
 	"github.com/jessevdk/go-flags"
 )
+
+var serverConfig ServerConfig
 
 type ServerConfig struct {
 	ProjectId   string `env:"project_id"`
@@ -13,13 +13,10 @@ type ServerConfig struct {
 	ServicePort string `env:"service_port"`
 }
 
-func LoadConfig[T any]() *T {
-	var config T
-	_, err := flags.Parse(&config)
+func LoadConfig() {
+	_, err := flags.Parse(&serverConfig)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("config: %+v\n", config)
-	return &config
 }
