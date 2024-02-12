@@ -13,6 +13,8 @@ type ServerConfig struct {
 	ServiceName string `long:"SERVICE_NAME" env:"SERVICE_NAME"`
 	ServiceHost string `long:"SERVICE_HOST" env:"SERVICE_HOST"`
 	ServicePort string `long:"SERVICE_PORT" env:"SERVICE_PORT"`
+
+	EnableSwagger bool `long:"ENABLE_SWAGGER" env:"ENABLE_SWAGGER"`
 }
 
 func LoadConfig() {
